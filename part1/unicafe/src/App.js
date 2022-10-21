@@ -7,7 +7,7 @@ const App = () => {
   const [bad, setBad] = useState(0)
 
   const title = 'give feedback'
-  const stats = 'statistics'
+ 
   const textG = 'good'
   const textN = 'neutral'
   const textB = 'bad'
@@ -28,7 +28,7 @@ const App = () => {
   }
   const average = (g,n,b) => {
     
-      if(g == 0 && b == 0 && n == 0){
+      if(g === 0 && b === 0 && n === 0){
         return 0
       }else{
         total = (g-b)/(g+n+b)
@@ -37,10 +37,10 @@ const App = () => {
   }
 
   const percentage = (g,n,b) => {
-    if(g == 0 && b == 0 && n == 0){
+    if(g === 0 && b === 0 && n === 0){
       return 0
     }else{
-      return ((g/(g+n+b))*100)
+      return (((g/(g+n+b))*100).toString() + '%')
     }
   }
   
@@ -51,13 +51,21 @@ const App = () => {
       <Button handleClick={increaseGood} text={textG} />
       <Button handleClick={increaseNeutral} text={textN} />
       <Button handleClick={increaseBad} text={textB} />
-      <Statistics stats={stats} />
-      <Count text={textG} count={good} />
+      <h1>statistics</h1>
+
+      <Statistics textG = {textG} countG={good}/>
+
+      <Statistics textN = {textN} countN={neutral}/>
+
+      <Statistics textB={textB} countB={bad} />
+      <Statistics textAvg={'average'} avg={average(good,neutral,bad)} />
+      <Statistics textPer={'percentage'} per={percentage(good,neutral,bad)} />
+      {/* <Count text={textG} count={good} />
       <Count text={textN} count={neutral} />
       <Count text={textB} count={bad} />
       <Count text={'all'} count={good+bad+neutral}/>
       <Count text ={'average'} count={average(good,neutral,bad)} />
-      <Count text = {'percentage'} count={percentage(good,neutral,bad)+'%'} />
+      <Count text = {'percentage'} count={percentage(good,neutral,bad)+'%'} /> */}
     </div>
   )
 }
@@ -82,18 +90,30 @@ const Button = (props) => {
   )
 }
 const Statistics = (props) => {
-  return (
-    <>
-    <h1>{props.stats}</h1>
-    </>
-  )
-}
-
-const Count = (props) => {
+  
   return (
     <div>
-      {props.text} {props.count}
+    <StatisticsLine name={props.textG} count={props.countG} />
+    <StatisticsLine name={props.textN} count={props.countN} />
+    <StatisticsLine name={props.textB} count={props.countB} />
+    <StatisticsLine name={props.textAvg} count={props.avg} />
+    <StatisticsLine name={props.textPer} count={props.per}/>
     </div>
   )
 }
+const StatisticsLine = (props) => {
+return(
+  <>
+  {props.name} {props.count} {props.sign}
+  </>
+)
+}
+
+// const Count = (props) => {
+//   return (
+//     <div>
+//       {props.text} {props.count}
+//     </div>
+//   )
+// }
 export default App
