@@ -58,19 +58,45 @@ const App = () => {
       
       return (
         <div>
+          
           <Display title={title} />
           <Button handleClick={increaseGood} text={textG} />
           <Button handleClick={increaseNeutral} text={textN} />
           <Button handleClick={increaseBad} text={textB} />
           <h1>statistics</h1>
-    
-          <Statistics textG = {textG} countG={good}/>
+          <table>
+            <tr>
+              <td><Statistics textG = {textG} /></td>
+              <td><Statistics countG={good} /></td>
+            </tr>
+            <tr>
+              <td><Statistics textN = {textN} /></td>
+              <td><Statistics countN={neutral} /></td>
+            </tr>
+            <tr>
+              <td><Statistics textB={textB} /></td>
+              <td><Statistics countB={bad} /></td>
+            </tr>
+            <tr>
+              <td><Statistics textA={'all'} /></td>
+              <td><Statistics countA={good+bad+neutral} /></td>
+            </tr>
+            <tr>
+              <td><Statistics textAvg={'average'} /></td>
+              <td><Statistics avg={average(good,neutral,bad)} /></td>
+            </tr>
+            <tr>
+              <td><Statistics textPer={'percentage'} /></td>
+              <td><Statistics per={percentage(good,neutral,bad)} /></td>
+            </tr>
+
+          {/* <Statistics textG = {textG} countG={good}/>
           <Statistics textN = {textN} countN={neutral}/>
           <Statistics textB={textB} countB={bad} />
           <Statistics textA={'all'} countA={good+bad+neutral} />
           <Statistics textAvg={'average'} avg={average(good,neutral,bad)} />
-          <Statistics textPer={'percentage'} per={percentage(good,neutral,bad)} />
-     
+          <Statistics textPer={'percentage'} per={percentage(good,neutral,bad)} /> */}
+          </table>
         </div>
       )
     }
