@@ -67,6 +67,7 @@ const App = () => {
           <Statistics textG = {textG} countG={good}/>
           <Statistics textN = {textN} countN={neutral}/>
           <Statistics textB={textB} countB={bad} />
+          <Statistics textA={'all'} countA={good+bad+neutral} />
           <Statistics textAvg={'average'} avg={average(good,neutral,bad)} />
           <Statistics textPer={'percentage'} per={percentage(good,neutral,bad)} />
      
@@ -102,6 +103,7 @@ const Statistics = (props) => {
       <StatisticsLine name={props.textG} count={props.countG} />
       <StatisticsLine name={props.textN} count={props.countN} />
       <StatisticsLine name={props.textB} count={props.countB} />
+      <StatisticsLine name={props.textA} count={props.countA} />
       <StatisticsLine name={props.textAvg} count={props.avg} />
       <StatisticsLine name={props.textPer} count={props.per}/>
       </div>
