@@ -43,32 +43,38 @@ const App = () => {
       return (((g/(g+n+b))*100).toString() + '%')
     }
   }
-  
+  if(good === 0 && neutral === 0 && bad === 0){
+      return (
+        <div>
+        <Display title={title} />
+        <Button handleClick={increaseGood} text={textG} />
+        <Button handleClick={increaseNeutral} text={textN} />
+        <Button handleClick={increaseBad} text={textB} />
+        <h1>statistics</h1>
+        <div>No feedback given</div>
+      </div>
+      )
+    }else{
+      
+      return (
+        <div>
+          <Display title={title} />
+          <Button handleClick={increaseGood} text={textG} />
+          <Button handleClick={increaseNeutral} text={textN} />
+          <Button handleClick={increaseBad} text={textB} />
+          <h1>statistics</h1>
+    
+          <Statistics textG = {textG} countG={good}/>
+          <Statistics textN = {textN} countN={neutral}/>
+          <Statistics textB={textB} countB={bad} />
+          <Statistics textAvg={'average'} avg={average(good,neutral,bad)} />
+          <Statistics textPer={'percentage'} per={percentage(good,neutral,bad)} />
+     
+        </div>
+      )
+    }
+    }
 
-  return (
-    <div>
-      <Display title={title} />
-      <Button handleClick={increaseGood} text={textG} />
-      <Button handleClick={increaseNeutral} text={textN} />
-      <Button handleClick={increaseBad} text={textB} />
-      <h1>statistics</h1>
-
-      <Statistics textG = {textG} countG={good}/>
-
-      <Statistics textN = {textN} countN={neutral}/>
-
-      <Statistics textB={textB} countB={bad} />
-      <Statistics textAvg={'average'} avg={average(good,neutral,bad)} />
-      <Statistics textPer={'percentage'} per={percentage(good,neutral,bad)} />
-      {/* <Count text={textG} count={good} />
-      <Count text={textN} count={neutral} />
-      <Count text={textB} count={bad} />
-      <Count text={'all'} count={good+bad+neutral}/>
-      <Count text ={'average'} count={average(good,neutral,bad)} />
-      <Count text = {'percentage'} count={percentage(good,neutral,bad)+'%'} /> */}
-    </div>
-  )
-}
 
 
 
@@ -90,17 +96,18 @@ const Button = (props) => {
   )
 }
 const Statistics = (props) => {
-  
+    
   return (
-    <div>
-    <StatisticsLine name={props.textG} count={props.countG} />
-    <StatisticsLine name={props.textN} count={props.countN} />
-    <StatisticsLine name={props.textB} count={props.countB} />
-    <StatisticsLine name={props.textAvg} count={props.avg} />
-    <StatisticsLine name={props.textPer} count={props.per}/>
-    </div>
-  )
-}
+      <div>
+      <StatisticsLine name={props.textG} count={props.countG} />
+      <StatisticsLine name={props.textN} count={props.countN} />
+      <StatisticsLine name={props.textB} count={props.countB} />
+      <StatisticsLine name={props.textAvg} count={props.avg} />
+      <StatisticsLine name={props.textPer} count={props.per}/>
+      </div>
+    )
+  }
+
 const StatisticsLine = (props) => {
 return(
   <>
