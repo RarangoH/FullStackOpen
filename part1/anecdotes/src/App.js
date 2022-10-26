@@ -14,37 +14,35 @@ const App = () => {
 
 
 const genRan = () => {
-  setSelected(Math.floor(Math.random() * anecdotes.length))
-  console.log(selected)
-  return selected
+  setSelected(Math.floor(Math.random() * anecdotes.length));
+  return selected;
 }
 
-const addPoint = () => {
-  console.log(selected)
-  console.log(points)
-  return setPoints(points.selected + 1)
+const genPoint = () => {
+  
+  return setPoints(1)
 }
 
   const [selected, setSelected] = useState(0)
-  const [points, setPoints] = useState({
-    one:5,
-    2:0,
-    3:0,
-    4:0,
-    5:0,
-    6:0,
-    7:0
+  const [points, setPoints] = ({
+    0:5,
+    1:6,
+    2:5,
+    3:4,
+    4:3,
+    5:1,
+    6:2
   })
 
-  console.log( "one:",points.one)
 
+ 
 
   return (
     <div>
       <div>{anecdotes[selected]}</div>
-      <div> has {points.selected} votes</div>
+      <div> has {points[selected]} votes</div>
       
-      <button onClick={addPoint}>vote</button>
+      <button onClick={genPoint}>vote</button>
       <button onClick={genRan}>next anecdote</button>
     </div>
   )
