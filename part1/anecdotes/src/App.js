@@ -96,7 +96,11 @@ const MostVotes =(props) =>{
       
     });
     if(t === undefined){
-      
+      return(
+        <div>
+          {props.anecdotes[0]}
+        </div>
+      )
     }else{
       if(t[0] === "one"){
         print = 0;
@@ -115,7 +119,7 @@ const MostVotes =(props) =>{
      }
     }
       
-
+    
     console.log(contador, props.anecdotes.anec , props.anecdotes.seven)
     return(
       <div>
