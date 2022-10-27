@@ -65,17 +65,62 @@ const genPoint = () => {
  console.log(points.one)
   return (
     <div>
+
+      <h1>Anecdote of the day</h1>
       <div>{anecdotes[selected]}</div>
      
       <Point number={selected} points={points}/>
-      <div>{selected}</div>
+      
       
       <button onClick={genPoint}>vote</button>
       <button onClick={genRan}>next anecdote</button>
+
+      <h1>Anecdote with most votes</h1>
+      <MostVotes points={points} anecdotes = {anecdotes}  />
     </div>
   )
 
   
+}
+const MostVotes =(props) =>{
+  var contador = 0;
+  var t;
+  var print;
+    Object.entries(props.points).forEach(element => {
+      
+        if(element[1] > contador){
+          contador = element[1];
+          t = element;
+        }
+      
+    });
+    if(t === undefined){
+      
+    }else{
+      if(t[0] === "one"){
+        print = 0;
+     }else if(t[0] === "two"){
+       print = 1;
+     }else if(t[0] === "three"){
+       print = 2;
+     }else if(t[0] === "four"){
+       print = 3;
+     }else if(t[0] === "five"){
+       print = 4;
+     }else if(t[0] === "six"){
+       print = 5;
+     }else{
+       print = 6;
+     }
+    }
+      
+
+    console.log(contador, props.anecdotes.anec , props.anecdotes.seven)
+    return(
+      <div>
+        {props.anecdotes[print]}
+      </div>
+    )
 }
 const Point = (props) =>{
       
