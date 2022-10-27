@@ -15,37 +15,114 @@ const App = () => {
 
 const genRan = () => {
   setSelected(Math.floor(Math.random() * anecdotes.length));
-  return selected;
+  
 }
 
+
 const genPoint = () => {
+ 
+  console.log("ssss",selected)
+  if(selected === 0){
+   
+    setPoints({...points, one:points.one+1})
+  }else if(selected === 1){
+    setPoints({...points, two:points.two+1})
+  }else if(selected === 2){
+    setPoints({...points, three:points.three+1})
+  }else if(selected === 3){
+    setPoints({...points, four:points.four+1})
+  }else if(selected === 4){
+    setPoints({...points, five:points.five+1})
+  }else if(selected === 5){
+    setPoints({...points, six:points.six+1})
+  }else{
+    setPoints({...points, seven:points.seven+1})
+  }
   
-  return setPoints(1)
+// const lookPoints = () => {
+//   if(selected ===0){
+//     return points.one;
+//   }
+// }
+
+  
 }
 
   const [selected, setSelected] = useState(0)
-  const [points, setPoints] = ({
-    0:5,
-    1:6,
-    2:5,
-    3:4,
-    4:3,
-    5:1,
-    6:2
+
+  const [points, setPoints] =useState({
+    one:0,
+    two:0,
+    three: 0,
+    four: 0,
+    five: 0 ,
+    six: 0,
+    seven: 0
   })
 
-
- 
-
+  console.log("selected",selected)
+  console.log("points",points)
+ console.log(points.one)
   return (
     <div>
       <div>{anecdotes[selected]}</div>
-      <div> has {points[selected]} votes</div>
+     
+      <Point number={selected} points={points}/>
+      <div>{selected}</div>
       
       <button onClick={genPoint}>vote</button>
       <button onClick={genRan}>next anecdote</button>
     </div>
   )
-}
 
+  
+}
+const Point = (props) =>{
+      
+          if(props.number === 0){
+            return (
+              <div>
+                 has {props.points.one} votes
+              </div>
+            )
+          }else if(props.number === 1){
+            return (
+              <div>
+                 has {props.points.two} votes
+              </div>
+            )
+          }else if(props.number === 2){
+            return (
+              <div>
+                 has {props.points.three} votes
+              </div>
+            )
+          }else if(props.number === 3){
+            return (
+              <div>
+                 has {props.points.four} votes
+              </div>
+            )
+          }else if(props.number === 4){
+            return (
+              <div>
+                 has {props.points.five} votes
+              </div>
+            )
+          }else if(props.number === 5){
+            return (
+              <div>
+                 has {props.points.six} votes
+              </div>
+            )
+          }else {
+            return (
+              <div>
+                 has {props.points.seven} votes
+              </div>
+            )
+          }
+          
+    
+}
 export default App
