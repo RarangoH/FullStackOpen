@@ -14,6 +14,7 @@ const App = () => {
 
 
 const genRan = () => {
+  
   setSelected(Math.floor(Math.random() * anecdotes.length));
   
 }
