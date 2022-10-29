@@ -1,9 +1,16 @@
 const Course = ({ course }) => {
+
+   
+    const initialValue = 0;
+    const total = course.parts.reduce((s,p) => s + p.exercises,initialValue);
+   
+
+
     return (
         <div>
             <Header name={course.name} />
             <Content parts={course.parts}/>
-            
+            <div><strong>total of {total} exercises</strong></div>
         </div>
     )
   }
@@ -19,13 +26,15 @@ const Course = ({ course }) => {
   const Content = ({parts}) =>{
     return(
         <div>
-            {parts.map(part => <Part name={part.name} exercises={part.exercises} />)}
+            
+            {parts.map(part => 
+                <Part key={part.id} name={part.name} exercises={part.exercises} /> ) }
          </div>
     )
     
   }
 
-  const Part = ({name, exercises}) =>{
+  const Part = ({name, exercises,id}) =>{
     return(
     <div>
         {name} {exercises}
