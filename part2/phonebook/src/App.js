@@ -6,12 +6,17 @@ const App = () => {
   ]) 
   const [newName, setNewName] = useState('')
 
+
+  const handleChange = () => {
+    
+  }
   return (
     <div>
       <h2>Phonebook</h2>
       <form>
         <div>
-          name: <input />
+          name: <input value={newName} onChange={handleChange}/>
+          
         </div>
         <div>
           <button type="submit">add</button>
