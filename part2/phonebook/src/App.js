@@ -18,11 +18,26 @@ const App = () => {
       name: newName
     }
     console.log("name",personObject.name)
-    setPersons(persons.concat(personObject));
-    setNewName('');
+    if(!arrayVer(personObject)){
+      setPersons(persons.concat(personObject));
+      setNewName('');
+    }else{
+      alert(`${personObject.name} is already added to the phonebook`);
+    }
+    
     
   }
 
+  const arrayVer = (x) =>{
+    
+    const find = persons.find(person => JSON.stringify(x) === JSON.stringify(person))
+    console.log("find",find);
+    if(find !== null && find !== undefined){
+      return true;
+    }else{
+      return false;
+    }
+  }
   console.log(persons)
   return (
     <div>
