@@ -2,25 +2,35 @@ import { useState } from 'react'
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
-  ]) 
-  const [newName, setNewName] = useState('')
+    { name: 'Arto Hellas',
+      phone: '393234209823041' }
+  ]) ;
+  const [newName, setNewName] = useState('');
+  const [newPhone, setPhone] = useState('');
 
 
-  const handleChange = (event) => {
+  const handleChangeName = (event) => {
     console.log(event.target.value);
     setNewName(event.target.value);
   }
+  const handleChangePhone = (event) => {
+    console.log(event.target.value);
+    setPhone(event.target.value);
+  }
 
   const addPerson = (event) =>{
+    
     event.preventDefault();
     const personObject={
-      name: newName
+      name: newName,
+      phone: newPhone
     }
+  
     console.log("name",personObject.name)
     if(!arrayVer(personObject)){
       setPersons(persons.concat(personObject));
       setNewName('');
+      setPhone('');
     }else{
       alert(`${personObject.name} is already added to the phonebook`);
     }
@@ -43,10 +53,12 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleChange}/>
+        
+      <div>name: <input value={newName} onChange={handleChangeName}/></div>
+      <div>number:<input value={newPhone} onChange={handleChangePhone}/></div>
+      
           
-        </div>
+        
         <div>
           <button type="submit">add</button>
         </div>
