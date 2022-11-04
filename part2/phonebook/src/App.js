@@ -10,11 +10,9 @@ const App = () => {
   ]) ;
   const [newName, setNewName] = useState('');
   const [newNumber, setNumber] = useState('');
-  const [newContNames, setContNames] = useState([]);
-
+  const [searchPnames, setPnames] = useState('');
   
- console.log("hola",newContNames)
-
+ 
 
   const handleChangeName = (event) => {
     // console.log(event.target.value);
@@ -25,28 +23,16 @@ const App = () => {
     setNumber(event.target.value);
   }
 
-  
-  const handleChangeSearch =(event) => {
+  const handleChangeSearch = (event) => {
     // console.log(event.target.value);
-  
-    setContNames([{ name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }]);
-    console.log("actual",newContNames)
-  persons.forEach(person =>{
-    if(person.name.includes(event.target.value)){
-     
-      setContNames(newContNames.concat(person));
-      console.log("if",newContNames)
-      debugger;
-    }
-  })
-    
-
-    console.log("newContNames",newContNames)
-    
-    
+    setPnames(event.target.value);
   }
- 
 
+  const peopleToShow = searchPnames
+  ? persons.filter(person => person.name.toLowerCase().includes(searchPnames.toLowerCase()))
+  : persons
+
+  
 
   const addPerson = (event) =>{
     
@@ -85,7 +71,11 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>filter shown with <input onChange={handleChangeSearch}/></div>
+      
+      <div>
+            filter shown with:<input value={searchPnames} onChange={handleChangeSearch} />
+        </div>
+      
       <h2>add a new</h2>
       <form onSubmit={addPerson}>
         
@@ -100,7 +90,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       
-     <Persona persons={persons} />
+     <Persona persons={peopleToShow} />
       {/* <div> {persons.map(p => <div key={p.id}> {p.name} {p.number}</div>)}</div> */}
     </div>
   )

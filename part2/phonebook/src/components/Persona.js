@@ -16,4 +16,6 @@ const Persona = ({persons}) =>{
     
 }
 
+
+
 export default Persona
