@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Persona from './components/Persona';
+import SearchFilter from './components/SearchFilter';
+import FormPerson from './components/FormPerson';
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -72,12 +74,15 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       
-      <div>
+      {/* <div>
             filter shown with:<input value={searchPnames} onChange={handleChangeSearch} />
-        </div>
+        </div> */}
+        <SearchFilter value={searchPnames} onChange={handleChangeSearch}/>
       
+
+
       <h2>add a new</h2>
-      <form onSubmit={addPerson}>
+      {/* <form onSubmit={addPerson}>
         
       <div>name: <input value={newName} onChange={handleChangeName}/></div>
       <div>number:<input value={newNumber} onChange={handleChangeNumber}/></div>
@@ -87,7 +92,12 @@ const App = () => {
         <div>
           <button type="submit">add</button>
         </div>
-      </form>
+      </form> */}
+
+      <FormPerson submit={addPerson}
+                  name={newName} onChangeName={handleChangeName}
+                  number={newNumber} onChangeNumber={handleChangeNumber} />      
+
       <h2>Numbers</h2>
       
      <Persona persons={peopleToShow} />
