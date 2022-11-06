@@ -1,8 +1,10 @@
 
+import {useState} from 'react'
+
+
 const Countries = ({onChange,show}) =>{
 
-    var result;
-    var country;
+
 
 if(show.length > 10){
     return(
@@ -34,7 +36,9 @@ else{
     return(
         <div>
             <div>find countries <input onChange={onChange}/></div>
-            {show.map(c => <div key={c.name.common}>{c.name.common} </div>)}
+            {show.map(c => <div key={c.name.common}>{c.name.common} 
+            <ShowCountry contryP = {c}/>
+            </div>)}
         </div>  
     )
 }
@@ -43,6 +47,20 @@ else{
     
 
 
+}
+
+const ShowCountry = ({}) =>{
+    var cont;
+    const addCountry = (c) =>{
+        console.log(c);
+        cont = c;
+    
+    }
+    return(
+        <>
+            <button onClick={addCountry}>show</button>
+        </>
+    )
 }
 
 
