@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
+import Countries from './components/Countries';
 
 
 
@@ -35,10 +36,13 @@ const [countries, setCountries] = useState('');
   ? info.filter(country => country.name.common.toLowerCase().includes(countries.toLowerCase()))
   : []
 
+  
+  
+
+
   return(
     <div>
-      <div>find countries <input onChange={handleChangeCountries}/></div>
-      {countriesToShow.map(c => <div key={c.name.common}>{c.name.common} </div>)}
+      <Countries show={countriesToShow} onChange={handleChangeCountries}/>
     </div>
   )
 };
