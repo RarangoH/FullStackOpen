@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
 import Countries from './components/Countries';
+import InputFilter from './components/inputFilter';
 
 
 
@@ -8,6 +9,7 @@ const App = () => {
 
 const [info, setInfo] = useState([]);
 const [countries, setCountries] = useState('');
+const [showCountries, setShowCountries] = useState([]);
 
   useEffect(() =>{
     axios
@@ -29,20 +31,26 @@ const [countries, setCountries] = useState('');
   const handleChangeCountries = (event) =>{
     // console.log(event.target.value);
     setCountries(event.target.value);
-  
+    countriesToShow();
   }
 
-  const countriesToShow = countries
-  ? info.filter(country => country.name.common.toLowerCase().includes(countries.toLowerCase()))
-  : []
-
-  
-  
+  // const countriesToShow = countries
+  // ? info.filter(country => country.name.common.toLowerCase().includes(countries.toLowerCase()))
+  // : []
 
 
+   const countriesToShow = () =>{
+    if(countries){
+      
+      setShowCountries(info.filter(country => country.name.common.toLowerCase().includes(countries.toLowerCase())))
+    }
+   }
+
+   
   return(
     <div>
-      <Countries show={countriesToShow} onChange={handleChangeCountries}/>
+      <InputFilter onChange = {handleChangeCountries} />
+      <Countries showCountries={showCountries} setShowCountries={setShowCountries} />
     </div>
   )
 };

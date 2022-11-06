@@ -1,45 +1,32 @@
 
-import {useState} from 'react'
+import ShowCountry from "./ShowCountry";
+
+const Countries = ({showCountries,setShowCountries}) =>{
 
 
-const Countries = ({onChange,show}) =>{
-
-
-
-if(show.length > 10){
+if(showCountries.length > 10){
     return(
         <div>
-            <div>find countries <input onChange={onChange}/></div>
             Too many matches, specify another filter
         </div>  
     )
 
-}else if(show.length === 1){
+}else if((showCountries.length <= 10 && showCountries.length >= 2) || showCountries.length === 0){
+    console.log(showCountries);
     return(
         <div>
-            <div>find countries <input onChange={onChange}/></div>
-            {show.map(c => <div key={c.name.common}>
-                <h1>{c.name.common}</h1> 
-                <div>capital {c.capital}</div>
-                <div>area {c.area}</div>
-                <br></br>
-                <div><strong>languages:</strong></div>
-            {<ul>{Object.values(c.languages).map(l => <li key={l}>{l}</li>)} </ul>} 
-                <img src={Object.values(c.flags)[0]}></img>
-
+            {showCountries.map(c => <div key={c.name.common}>{c.name.common} 
+            <button value={c.name.common} onClick={() => setShowCountries([c])}>show</button>
             </div>)}
         </div>  
-
     )
 }
 else{
     return(
         <div>
-            <div>find countries <input onChange={onChange}/></div>
-            {show.map(c => <div key={c.name.common}>{c.name.common} 
-            <ShowCountry contryP = {c}/>
-            </div>)}
+            <ShowCountry showCountries = {showCountries}/>
         </div>  
+
     )
 }
 
@@ -48,21 +35,6 @@ else{
 
 
 }
-
-const ShowCountry = ({}) =>{
-    var cont;
-    const addCountry = (c) =>{
-        console.log(c);
-        cont = c;
-    
-    }
-    return(
-        <>
-            <button onClick={addCountry}>show</button>
-        </>
-    )
-}
-
 
 
 export default Countries
