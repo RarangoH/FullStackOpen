@@ -1,4 +1,4 @@
-
+import React from 'react';
 import ShowCountry from "./ShowCountry";
 
 const Countries = ({showCountries,setShowCountries}) =>{
