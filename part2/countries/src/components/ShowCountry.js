@@ -35,7 +35,7 @@ const ShowCountry = ({showCountries}) => {
         
         setTemp(param.main.temp - 273.15);
         setWind(param.wind.speed);
-        setIcon("http://openweathermap.org/img/w/" + param.weather[0].icon + ".png")
+        setIcon("http://openweathermap.org/img/wn/" + param.weather[0].icon + ".png")
     }
       
 
