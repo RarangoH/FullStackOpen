@@ -71,12 +71,25 @@ const App = () => {
 
   const arrayVer = (x) =>{
     
-    const find = persons.find(person => JSON.stringify(x.number) === JSON.stringify(person.number))
-    
-    if(find !== null && find !== undefined){
+    const findNumber = persons.find(person => JSON.stringify(x.number) === JSON.stringify(person.number))
+    const findName = persons.find(person => JSON.stringify(x.name) === JSON.stringify(person.name))
+
+
+    if(findNumber !== null && findNumber !== undefined){
       return true;
     }else{
-      return false;
+      if(findName !== null && findName !== undefined){
+        if(window.confirm(`${x.name} is already added to the phonebook, replace the old number with a new one?`)){
+          console.log("la persona encontrada se llama:" , findName.name);
+          personService
+          .update(findName.id,findName)
+          return false
+        }else{
+          return true;
+        }
+        
+      }
+      
     }
   }
 
@@ -111,7 +124,7 @@ const App = () => {
 
       <h2>Numbers</h2>
       
-     <Persona persons={peopleToShow} />
+     <Persona persons={peopleToShow} setPersons ={setPersons} />
       {/* <div> {persons.map(p => <div key={p.id}> {p.name} {p.number}</div>)}</div> */}
     </div>
   )
