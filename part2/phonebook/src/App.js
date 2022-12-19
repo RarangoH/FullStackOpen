@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import Persona from './components/Persona';
 import SearchFilter from './components/SearchFilter';
 import FormPerson from './components/FormPerson';
-import axios from 'axios'
+
+import personService from './services/personService';
 
 const App = () => {
   const [persons, setPersons] = useState([]) ;
@@ -13,13 +14,13 @@ const App = () => {
   
   useEffect(() => {
     console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        console.log('promise fulfilled')
-        setPersons(response.data)
-      })
-  }, [])
+    personService
+    .getAll()
+    .then(initialPPl => {
+     
+      setPersons(initialPPl)
+    })
+      }, []);
 
   console.log("persons",persons)
 
@@ -54,7 +55,10 @@ const App = () => {
   
     
     if(!arrayVer(personObject)){
-      setPersons(persons.concat(personObject));
+      personService
+      .create(personObject)
+      .then(newPerson => setPersons(persons.concat(newPerson)))
+      // setPersons(persons.concat(personObject));
       setNewName('');
       setNumber('');
     }else{
@@ -67,7 +71,7 @@ const App = () => {
 
   const arrayVer = (x) =>{
     
-    const find = persons.find(person => JSON.stringify(x) === JSON.stringify(person))
+    const find = persons.find(person => JSON.stringify(x.number) === JSON.stringify(person.number))
     
     if(find !== null && find !== undefined){
       return true;
