@@ -82,10 +82,17 @@ const App = () => {
         if(window.confirm(`${x.name} is already added to the phonebook, replace the old number with a new one?`)){
           console.log("la persona encontrada se llama:" , findName.name);
           personService
-          .update(findName.id,findName)
-          return false
-        }else{
+          .update(findName.id,x)
+          .then(updatedPerson => {
+            console.log(updatedPerson);
+            const newPeople = persons.map(p => p.id !== updatedPerson.id ? p : updatedPerson);
+            setPersons(newPeople)
+          })
+          setNewName('');
+          setNumber('');
           return true;
+        }else{
+          return false;
         }
         
       }

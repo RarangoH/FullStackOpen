@@ -20,7 +20,7 @@ const remove = (id) => {
 const update = (id,updatedObject) => {
     const newUrl = baseUrl + "/" + id;
     const request = axios.put(newUrl,updatedObject);
-    request.then(response => response.data);
+    return request.then(response => response.data);
 }
 export default{
     getAll: getAll,
